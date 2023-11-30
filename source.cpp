@@ -147,8 +147,20 @@ string finder() {
         }
     }
 }
+void enableANSI()
+{
+    HANDLE ok = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (ok == INVALID_HANDLE_VALUE) return;
+
+    DWORD dwMode = 0;
+    if (!GetConsoleMode(ok, &dwMode)) return;
+
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(ok, dwMode);
+}
 int main()
 {
+    enableANSI();
     string path = finder();
     clear();
     cout << path;
