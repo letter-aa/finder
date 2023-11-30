@@ -152,4 +152,6 @@ int main()
     string path = finder();
     clear();
     cout << path;
+
+    while (!_kbhit()) {}
 }
